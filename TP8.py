@@ -58,18 +58,6 @@ class Calculette(App):
 
         return layout
 
-    def Grid(self):
-        grid = GridLayout(cols=5, rows=5, spacing=2, padding=2)
-        for i in range(25):
-            btn = Button(text="", background_color=(1, 1, 1, 1))
-            btn.bind(on_press=self.on_button_press)
-            grid.add_widget(btn)
-
-        return grid
-
-    def on_button_press(self, instance):
-        instance.background_color = (0, 0, 1, 1)
-
     def calcul(self, instance):
         num1 = self.text_input1.text
         num2 = self.text_input2.text
