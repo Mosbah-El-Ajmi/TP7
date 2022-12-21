@@ -13,11 +13,16 @@ class Fraction:
 
         PRE : num and den are integers
         POST : a fraction object is created, it has a numerator and a denominator, and it's reduced
-        Raise : Exception if den = 0 or ShouldbeAndIntegerException if num and den are not real number
+        Raise : Exception if den = 0 or TypeError if num and den are not real number
         """
-        self.numerator = num
-        self.denominator = den
-        self.reduce()
+        if den == 0:
+            raise ValueError("the denominator must not be zero!")
+        try:
+            self.numerator = int(num)
+            self.denominator = int(den)
+            self.reduce()
+        except ValueError:
+            print("The numerator and denominator values must be integers!")
 
     @property
     def numerator(self):
