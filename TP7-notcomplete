@@ -1,5 +1,6 @@
 import math
 
+
 class Fraction:
     """Class representing a fraction and operations on it
 
@@ -8,7 +9,7 @@ class Fraction:
     This class allows fraction manipulations through several operations.
     """
 
-    def __init__(num=0, den=1):
+    def __init__(self,num=0, den=1):
         """This builds a fraction based on some numerator and denominator.
 
         PRE : num and den are integers
@@ -18,19 +19,20 @@ class Fraction:
         if den == 0:
             raise ValueError("the denominator must not be zero!")
         try:
-            self.numerator = int(num)
-            self.denominator = int(den)
+            self.num = int(num)
+            self.den = int(den)
             self.reduce()
         except ValueError:
             print("The numerator and denominator values must be integers!")
 
     @property
     def numerator(self):
-        pass
+        return self.num
+
     @property
     def denominator(self):
-        pass
-        
+        return self.den
+
     def reduce(self):
         """Return a reduced version of the fraction
 
@@ -38,10 +40,10 @@ class Fraction:
         POST : return a string representing of the reduced fraction
         """
         gcd = math.gcd(self.numerator, self.denominator)
-        self.numerator = self.numerator // gcd
-        self.denominator = self.denominator // gcd
+        self.num = self.numerator // gcd
+        self.den = self.denominator // gcd
 
-# ------------------ Textual representations ------------------
+    # ------------------ Textual representations ------------------
 
     def __str__(self):
         """Return a textual representation of the reduced form of the fraction
@@ -54,7 +56,7 @@ class Fraction:
         else:
             return f"{self.numerator}/{self.denominator}"
 
-    def as_mixed_number(self) :
+    def as_mixed_number(self):
         """Return a textual representation of the reduced form of the fraction as a mixed number
 
         A mixed number is the sum of an integer and a proper fraction
@@ -72,8 +74,7 @@ class Fraction:
         else:
             return f"{integer_part} {str(fractional_part)}"
 
-    
-# ------------------ Operators overloading ------------------
+    # ------------------ Operators overloading ------------------
 
     def __add__(self, other):
         """Overloading of the + operator for fractions
@@ -85,7 +86,6 @@ class Fraction:
         den = self.denominator * other.denominator
         return Fraction(num, den)
 
-
     def __sub__(self, other):
         """Overloading of the - operator for fractions
 
@@ -95,7 +95,6 @@ class Fraction:
         num = self.numerator * other.denominator - other.numerator * self.denominator
         den = self.denominator * other.denominator
         return Fraction(num, den)
-
 
     def __mul__(self, other):
         """Overloading of the * operator for fractions
@@ -107,7 +106,6 @@ class Fraction:
         den = self.denominator * other.denominator
         return Fraction(num, den)
 
-
     def __truediv__(self, other):
         """Overloading of the / operator for fractions
 
@@ -118,7 +116,6 @@ class Fraction:
         den = self.denominator * other.numerator
         return Fraction(num, den)
 
-
     def __pow__(self, other):
         """Overloading of the ** operator for fractions
 
@@ -127,15 +124,14 @@ class Fraction:
         """
         num = (self.numerator ** (other.numerator / other.denominator)).real
         den = (self.denominator **
-                       (other.numerator / other.denominator)).real
+               (other.numerator / other.denominator)).real
         if num < 0 and den < 0:
             num = -1 * num
             den = -1 * den
 
         return Fraction(num, den)
-    
-    
-    def __eq__(self, other) : 
+
+    def __eq__(self, other):
         """Overloading of the == operator for fractions
 
         PRE : other is a Fraction object
@@ -143,21 +139,20 @@ class Fraction:
         """
         self_reduced = Fraction(self.numerator, self.denominator)
         other_reduced = Fraction(other.numerator, other.denominator)
-        return (self_reduced.numerator == other_reduced.numerator) and (self_reduced.denominator == other_reduced.denominator)
-        
-    def __float__(self) :
+        return (self_reduced.numerator == other_reduced.numerator) and (
+                    self_reduced.denominator == other_reduced.denominator)
+
+    def __float__(self):
         """Returns the decimal value of the fraction
 
         PRE : a Fraction object
         POST : Return decimal value of an object Fraction
         """
         return round(self.numerator / self.denominator, 2)
-    
-# TODO : [BONUS] You can overload other operators if you wish (ex : <, >, ...)
 
+    # TODO : [BONUS] You can overload other operators if you wish (ex : <, >, ...)
 
-
-# ------------------ Properties checking ------------------
+    # ------------------ Properties checking ------------------
 
     def is_zero(self):
         """Check if a fraction's value is 0
@@ -166,7 +161,6 @@ class Fraction:
         POST : return True if the value of the zero is equal 0
         """
         return self.numerator == 0
-
 
     def is_integer(self):
         """Check if a fraction is integer (ex : 8/4, 3, 2/2, ...)
@@ -194,7 +188,7 @@ class Fraction:
         reduced_fraction = Fraction(self.numerator, self.denominator)
         return reduced_fraction.numerator == 1
 
-    def is_adjacent_to(self, other) :
+    def is_adjacent_to(self, other):
         """Check if two fractions differ by a unit fraction
 
         Two fractions are adjacents if the absolute value of the difference them is a unit fraction
