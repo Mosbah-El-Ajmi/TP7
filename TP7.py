@@ -39,6 +39,12 @@ class Fraction:
         PRE : a Fraction object
         POST : return a string representing of the reduced fraction
         """
+        if self.numerator < 0 and self.denominator < 0:
+            self.num = -self.numerator
+            self.den = -self.denominator
+        elif self.numerator < 0:
+            self.num = -self.numerator
+
         gcd = math.gcd(self.numerator, self.denominator)
         self.num = self.numerator // gcd
         self.den = self.denominator // gcd
@@ -214,7 +220,7 @@ if __name__ == "__main__":
         fraction2 = Fraction(15.3, 102.8)
         fraction3 = Fraction(-87, -87)
         fraction6 = Fraction(17.4, 17.4)
-        print(fraction6.__eq__(fraction3))
+        print(fraction6==fraction3)
         print(fraction6)
         print(fraction3)
     except ValueError as error:
