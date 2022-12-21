@@ -2,8 +2,12 @@ import unittest
 
 from TP7 import Fraction
 
-
 class TestFraction(unittest.TestCase):
+    """This class is a test class for the Fraction class.
+
+        Author : Mosbah El-Ajmi
+        Date : December 2022
+    """
     def test_init(self):
         f = Fraction(3, 4)
         self.assertEqual(f.numerator, 3)
@@ -14,16 +18,16 @@ class TestFraction(unittest.TestCase):
         self.assertEqual(f.denominator, 4)
 
         f = Fraction(3, -4)
-        self.assertEqual(f.numerator, 3)
-        self.assertEqual(f.denominator, -4)
+        self.assertEqual(f.numerator, -3)
+        self.assertEqual(f.denominator, 4)
 
         f = Fraction(-3, -4)
-        self.assertEqual(f.numerator, -3)
-        self.assertEqual(f.denominator, -4)
+        self.assertEqual(f.numerator, 3)
+        self.assertEqual(f.denominator, 4)
 
         f = Fraction(0, 4)
         self.assertEqual(f.numerator, 0)
-        self.assertEqual(f.denominator, 4)
+        self.assertEqual(f.denominator, 1)
 
         with self.assertRaises(ValueError):
             Fraction(3, 0)
@@ -65,7 +69,7 @@ class TestFraction(unittest.TestCase):
 
         f1 = Fraction(1, 2)
         f2 = Fraction(2, 2)
-        self.assertEqual(f1 / f2, Fraction(1, 4))
+        self.assertEqual(f1 / f2, Fraction(1, 2))
 
         f1 = Fraction(1, 2)
         f2 = Fraction(0, 2)
