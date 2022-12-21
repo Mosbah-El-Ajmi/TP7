@@ -200,3 +200,22 @@ class Fraction:
         difference = self - other
         reduced_difference = Fraction(difference.numerator, difference.denominator)
         return reduced_difference.is_unit()
+
+if __name__ == "__main__":
+    try:
+        f = Fraction(-2, -3)
+        fraction7 = Fraction(524, 124.58)
+        fraction8 = Fraction(18, 57.5)
+        fraction9 = Fraction(47.2, -9)
+        fraction10 = Fraction(-1.2, 3.6)
+        fraction0 = Fraction(1, 2)
+        fraction01 = Fraction(10, 23)
+        fraction1 = Fraction(45.35654, 12.4214)
+        fraction2 = Fraction(15.3, 102.8)
+        fraction3 = Fraction(-87, -87)
+        fraction6 = Fraction(17.4, 17.4)
+        print(fraction6.__eq__(fraction3))
+        print(fraction6)
+        print(fraction3)
+    except ValueError as error:
+        print(error)
