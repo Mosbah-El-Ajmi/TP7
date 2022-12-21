@@ -40,10 +40,11 @@ class Fraction:
         POST : return a string representing of the reduced fraction
         """
         if self.numerator < 0 and self.denominator < 0:
+            self.num = abs(self.numerator)
+            self.den = abs(self.denominator)
+        elif self.denominator < 0:
             self.num = -self.numerator
-            self.den = -self.denominator
-        elif self.numerator < 0:
-            self.num = -self.numerator
+            self.den = abs(self.denominator)
 
         gcd = math.gcd(self.numerator, self.denominator)
         self.num = self.numerator // gcd
