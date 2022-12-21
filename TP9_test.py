@@ -1,6 +1,6 @@
 import unittest
 
-from test import Fraction
+from TP7 import Fraction
 
 
 class TestFraction(unittest.TestCase):
