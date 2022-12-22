@@ -107,7 +107,13 @@ class TestFraction(unittest.TestCase):
     def test_pow(self):
         f = Fraction(5, 2)
         f2 = Fraction(4, 4)
-        self.assertEqual(f.as_mixed_number(), "2 1/2")
+        value = f**f2
+        self.assertEqual(value.as_mixed_number(), "2 1/2")
+
+    def test_is_nul(self):
+        f = Fraction(0,1)
+        self.assertTrue(f)
+
 
 if __name__ == "__main__":
     unittest.main()
