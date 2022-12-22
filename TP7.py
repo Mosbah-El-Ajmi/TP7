@@ -120,7 +120,7 @@ class Fraction:
         POST : returns an object of the Fraction class representing the result of the division between self and other
         Raise : Error if other is null
         """
-        if other == 0 :
+        if (other.numerator/other.denominator) != 0:
             num = self.numerator * other.denominator
             den = self.denominator * other.numerator
             return Fraction(num, den)
