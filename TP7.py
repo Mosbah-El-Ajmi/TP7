@@ -22,8 +22,8 @@ class Fraction:
             self.num = int(num)
             self.den = int(den)
             self.reduce()
-        except ValueError:
-            print("The numerator and denominator values must be integers!")
+        except:
+            raise ValueError("The numerator and denominator values must be integers!")
 
     @property
     def numerator(self):
