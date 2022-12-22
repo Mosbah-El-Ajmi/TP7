@@ -9,20 +9,20 @@ class Fraction:
     This class allows fraction manipulations through several operations.
     """
 
-    def __init__(self,num=0, den=1):
+    def __init__(self, num=0, den=1):
         """This builds a fraction based on some numerator and denominator.
 
         PRE : num and den are integers
         POST : a fraction object is created, it has a numerator and a denominator, and it's reduced
-        Raise : Exception if den = 0 or TypeError if num and den are not real number
+        Raise : Exception if den = 0
         """
         if den == 0:
-            raise ValueError("the denominator must not be zero!")
+            raise ZeroDivisionError("the denominator must not be zero!")
         try:
             self.num = int(num)
             self.den = int(den)
             self.reduce()
-        except ValueError:
+        except TypeError:
             print("The numerator and denominator values must be integers!")
 
     @property
@@ -118,10 +118,14 @@ class Fraction:
 
         PRE : other is a Fraction object
         POST : returns an object of the Fraction class representing the result of the division between self and other
+        Raise : Error if other is null
         """
-        num = self.numerator * other.denominator
-        den = self.denominator * other.numerator
-        return Fraction(num, den)
+        if other == 0 :
+            num = self.numerator * other.denominator
+            den = self.denominator * other.numerator
+            return Fraction(num, den)
+        else:
+            raise ZeroDivisionError("the other must not be zero!")
 
     def __pow__(self, other):
         """Overloading of the ** operator for fractions
@@ -147,7 +151,7 @@ class Fraction:
         self_reduced = Fraction(self.numerator, self.denominator)
         other_reduced = Fraction(other.numerator, other.denominator)
         return (self_reduced.numerator == other_reduced.numerator) and (
-                    self_reduced.denominator == other_reduced.denominator)
+                self_reduced.denominator == other_reduced.denominator)
 
     def __float__(self):
         """Returns the decimal value of the fraction
@@ -208,9 +212,11 @@ class Fraction:
         reduced_difference = Fraction(difference.numerator, difference.denominator)
         return reduced_difference.is_unit()
 
+
 if __name__ == "__main__":
     try:
         f = Fraction(-2, -3)
+        frak = Fraction(1, -4)
         fraction7 = Fraction(524, 124.58)
         fraction8 = Fraction(18, 57.5)
         fraction9 = Fraction(47.2, -9)
@@ -221,8 +227,9 @@ if __name__ == "__main__":
         fraction2 = Fraction(15.3, 102.8)
         fraction3 = Fraction(-87, -87)
         fraction6 = Fraction(17.4, 17.4)
-        print(fraction6==fraction3)
+        print(fraction6 == fraction3)
         print(fraction6)
         print(fraction3)
-    except ValueError as error:
+        print(frak)
+    except TypeError as error:
         print(error)
