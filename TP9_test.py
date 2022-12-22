@@ -29,8 +29,11 @@ class TestFraction(unittest.TestCase):
         self.assertEqual(f.numerator, 0)
         self.assertEqual(f.denominator, 1)
 
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ZeroDivisionError):
             Fraction(3, 0)
+
+        with self.assertRaises(ValueError):
+            Fraction("a","b")
 
     def test_str(self):
         f = Fraction(3, 4)
@@ -100,6 +103,11 @@ class TestFraction(unittest.TestCase):
 
         f = Fraction(1, 2)
         self.assertEqual(f.as_mixed_number(), "1/2")
+
+    def test_pow(self):
+        f = Fraction(5, 2)
+        f2 = Fraction(4, 4)
+        self.assertEqual(f.as_mixed_number(), "2 1/2")
 
 if __name__ == "__main__":
     unittest.main()
